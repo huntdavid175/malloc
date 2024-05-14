@@ -42,3 +42,11 @@ void fillFlightInfo(struct Flight *flight, char destination[], char date[])
 
     strcpy(flight->date, date);
 }
+
+void printFlightInfo(struct Flight flights[])
+{
+    for (int i = 0; i < 10; i++)
+    {
+        printf("Destination: %s   Date:%s", flights[i].destination, flights[i].date);
+    }
+}
