@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define kFlightsSize 10
+#define kFlightsSize 2
 #define kInputSize 30
 struct Flight
 {
@@ -27,9 +27,11 @@ int main(void)
 
         printf("Please input your destination: ");
         fgets(destinationInput, kInputSize, stdin);
+        destinationInput[strcspn(destinationInput, "\n")] = 0;
 
         printf("Please inpute the date: ");
         fgets(dateInput, kInputSize, stdin);
+        dateInput[strcspn(dateInput, "\n")] = 0;
 
         fillFlightInfo(&flights[i], destinationInput, dateInput);
     }
@@ -69,6 +71,6 @@ void printFlightInfo(struct Flight flights[])
 {
     for (int i = 0; i < kFlightsSize; i++)
     {
-        printf("Destination: %s   Date:%s", flights[i].destination, flights[i].date);
+        printf("%-35s %-35s\n", flights[i].destination, flights[i].date);
     }
 }
