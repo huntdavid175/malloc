@@ -14,6 +14,8 @@ void fillFlightInfo(struct Flight *flight, char destination[], char date[]);
 
 void printFlightInfo(struct Flight flights[]);
 
+void freeSpace(struct Flight flights[]);
+
 int main(void)
 {
     struct Flight flights[kFlightsSize] = {0};
@@ -37,6 +39,8 @@ int main(void)
     }
 
     printFlightInfo(flights);
+
+    freeSpace(flights);
 
     return 0;
 }
@@ -72,5 +76,21 @@ void printFlightInfo(struct Flight flights[])
     for (int i = 0; i < kFlightsSize; i++)
     {
         printf("%-35s %-35s\n", flights[i].destination, flights[i].date);
+    }
+}
+
+void freeSpace(struct Flight flights[])
+{
+    for (int i = 0; i < kFlightsSize; i++)
+    {
+        if (flights[i].destination != NULL)
+        {
+            free(flights[i].destination);
+        }
+
+        if (flights[i].date != NULL)
+        {
+            free(flights[i].date);
+        }
     }
 }
